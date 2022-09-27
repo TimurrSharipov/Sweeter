@@ -30,6 +30,9 @@ public class User implements UserDetails {
     public boolean isAccountNonExpired() {
         return true;
     }
+    public boolean isAdmin(){
+        return roles.contains(Role.ADMIN);
+    }
 
     @Override
     public boolean isAccountNonLocked() {
