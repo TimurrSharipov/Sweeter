@@ -23,26 +23,24 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
-
-
         if (!userService.addUser(user)) {
             model.put("message", "User exists!");
             return "registration";
         }
 
-
-
         return "redirect:/login";
     }
+
     @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code){
-        boolean isActive = userService.activateUser(code);
-        if(isActive){
+    public String activate(Model model, @PathVariable String code) {
+        boolean isActivated = userService.activateUser(code);
+
+        if (isActivated) {
             model.addAttribute("message", "User successfully activated");
+        } else {
+            model.addAttribute("message", "Activation code is not found!");
         }
-        else{
-            model.addAttribute("message", "Can't activate user");
-        }
+
         return "login";
     }
 }
