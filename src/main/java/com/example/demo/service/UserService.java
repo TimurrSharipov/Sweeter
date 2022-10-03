@@ -4,6 +4,7 @@ import com.example.demo.domain.Role;
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +16,8 @@ import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
+    @Value("${server.port}")
+    private String port;
     @Autowired
     private UserRepo userRepo;
 
@@ -42,8 +45,9 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://localhost:8081/activate/%s",
+                            "Welcome to Sweater. Please, visit next link: http://localhost:%s/activate/%s",
                     user.getUsername(),
+                    port,
                     user.getActivationCode()
             );
 
