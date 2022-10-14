@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -80,5 +78,11 @@ public class MainController {
             message.setFilename(resultFilename);
         }
     }
+    @GetMapping("/delete{id}")
+    private String delete(@PathVariable("id") Long id){
+        messageRepo.deleteById(id);
+        return "redirect:/main";
+    }
+
 
 }

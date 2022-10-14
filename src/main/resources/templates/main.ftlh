@@ -28,7 +28,7 @@
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Добавить</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>
@@ -47,6 +47,11 @@
                 <div class="card-footer text-muted">
                     ${message.authorName}
                 </div>
+                <form method="get" action="/delete${message.id}">
+                <div>
+                    <button type="submit" >Delete</button>
+                </div>
+                </form>
             </div>
         <#else>
             No message
