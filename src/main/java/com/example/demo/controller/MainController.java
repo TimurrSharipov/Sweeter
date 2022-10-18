@@ -50,7 +50,7 @@ public class MainController {
                       @AuthenticationPrincipal User user,
                       @RequestParam String text,
                       @RequestParam String tag,
-                      Map<String, Object> model) throws IOException {
+                      Model model) throws IOException {
         Message message = new Message(text, tag, user);
         saveFile(message, file);
 
@@ -58,7 +58,7 @@ public class MainController {
 
         Iterable<Message> messages = messageRepo.findAll();
 
-        model.put("messages", messages);
+        model.addAttribute("messages", messages);
 
         return "main";
     }

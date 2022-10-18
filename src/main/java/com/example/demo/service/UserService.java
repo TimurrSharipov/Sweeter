@@ -45,7 +45,7 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Welcome to Sweater. Please, visit next link: http://localhost:%s/activate/%s",
+                            "Welcome to Sweeter. Please, visit next link: http://localhost:%s/activate/%s",
                     user.getUsername(),
                     port,
                     user.getActivationCode()
